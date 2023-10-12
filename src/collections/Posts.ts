@@ -40,18 +40,19 @@ const Posts: CollectionConfig = {
 
   endpoints: [
     {
-      path: `/posts/videos/stream`,
+      path: `/videos/stream`,
       method: 'get',
-      handler: (req, res, next) => {
-        res.status(200).send('Okay');
-        // const tracking = await fetch(
-        //   'http://localhost:3000/api/posts?where[category][equals]=stream'
-        // );
-        // if (tracking) {
-        //   res.status(200).send({ tracking });
-        // } else {
-        //   res.status(404).send({ error: 'not found' });
-        // }
+      handler: async (req, res, next) => {
+        const data = await fetch(
+          'http://localhost:3000/api/posts?where[category][equals]=stream'
+        );
+        const final = await data.json();
+        if (final) {
+          console.log(final);
+          res.status(200).send(final);
+        } else {
+          res.status(404).send({ error: 'not found' });
+        }
       },
     },
   ],
