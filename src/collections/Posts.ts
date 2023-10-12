@@ -44,7 +44,7 @@ const Posts: CollectionConfig = {
       method: 'get',
       handler: async (req, res, next) => {
         const data = await fetch(
-          'http://localhost:3000/api/posts?where[category][equals]=stream'
+          'https://assignment-2y3n.onrender.com/api/posts?where[category][equals]=stream'
         );
         const final = await data.json();
         if (final) {
